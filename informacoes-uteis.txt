@@ -1,0 +1,24 @@
+Para startar o laravel
+
+./vendor/bin/sail up
+
+
+Para subir o projeto:
+ - Sobe o design
+npm run dev
+
+Se for necessário!
+ - Sobe o Laravel
+php artisan serve
+
+    ou com indicação de host mais porta
+php artisan serve --host=<ip do host> --port=<porta do host>
+
+    exemplo:
+php artisan serve --host=localhost --port=5050
+
+
+Instalar o Framework Bootstrap
+1 - https://cursos.alura.com.br/forum/topico-ao-executar-o-npm-install-bootstrap-a-aplicacao-nao-funcionou-mais-271952
+
+2 - https://cursos.alura.com.br/forum/topico-duvida-vite-config-257454
