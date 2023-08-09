@@ -15,16 +15,26 @@ use App\Http\Controllers\SeriesController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/series');
 });
 Route::get('/teste', function () {
     return view('teste');
 });
 
-Route::get('/series', [SeriesController::class, 'index']);
-Route::get('/series/criar', [SeriesController::class, 'create']);
-Route::post('/series/salvar', [SeriesController::class, 'store']);
-Route::get('/series/visualisar/{id}', [SeriesController::class, 'view']);
-Route::get('/series/editar/{id}', [SeriesController::class, 'edit']);
-Route::post('/series/editar/{id}', [SeriesController::class, 'update']);
-Route::get('/series/deletar/{id}', [SeriesController::class, 'delete']);
+Route::controller(SeriesController::class)->group(function(){
+    Route::get('/series', 'index')->name('series.index');
+    Route::get('/series/criar', 'create')->name('series.create');
+    Route::post('/series/salvar', 'store')->name('series.store');
+    Route::get('/series/visualisar/{id}', 'view')->name('series.view');
+    Route::get('/series/editar/{id}', 'edit')->name('series.edit');
+    Route::post('/series/editar/{id}', 'update')->name('series.update');
+    Route::get('/series/deletar/{id}', 'delete')->name('series.delete');
+    // Route::get('/series', 'index')->name('series.index');
+    // Route::get('/series/criar', 'create')->name('series.create');
+    // Route::post('/series/salvar', 'store')->name('serie.store');
+    // Route::get('/series/visualisar/{id}', 'view')->name('series.view');
+    // Route::get('/series/editar/{id}', 'edit')->name('series.edit');
+    // Route::post('/series/editar/{id}', 'update')->name('series.update');
+    // Route::get('/series/deletar/{id}', 'delete')->name('series.delete');
+});
+

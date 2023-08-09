@@ -5,6 +5,7 @@ Para startar o laravel
 
 Para subir o projeto:
  - Sobe o design
+ - Acessar o containeir do laravel controle-series-app-controle_series-1
 npm run dev
 
 Se for necessário!

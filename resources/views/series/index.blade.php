@@ -6,7 +6,7 @@
                 @endif
         @endforeach
     @endif
-    <a href="/series/criar" class="btn btn-dark mb-2">Adicionar</a>
+    <a href="{{route('series.create')}}" class="btn btn-dark mb-2">Adicionar</a>
 
     @php($count = 1)
     <div class="accordion" id="accordionExample">
