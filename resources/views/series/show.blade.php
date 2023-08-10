@@ -19,9 +19,19 @@
 
     <div class="accordion-body d-flex justify-content-end">
         <div class="d-flex justify-content-between col-3">
-            <a href="/series" class="btn btn-dark mb-2">Listar Series</a>
-            <a href="{{url('series/editar/' . $serieAll->id)}}" class="btn btn-warning mb-2">Editar</a>
-            <a href="{{url('series/deletar/' . $serieAll->id)}}" class="btn btn-danger mb-2">Deletar</a>
+            <form action="{{route('series.index')}}" method="get">
+                @csrf
+                <button class="btn btn-dark btn-sm">Listar Series</button>
+            </form>
+            <form action="{{route('series.edit', $serieAll->id)}}" method="get">
+                @csrf
+                <button class="btn btn-warning btn-sm">Editar</button>
+            </form>
+            <form action="{{route('series.destroy', $serieAll->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger btn-sm">Deletar</button>
+            </form>
         </div>
     </div>
     </div>

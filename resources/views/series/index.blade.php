@@ -8,6 +8,12 @@
     @endif
     <a href="{{route('series.create')}}" class="btn btn-dark mb-2">Adicionar</a>
 
+    @isset($mensagemSucesso)
+        <div class="alert alert-success">
+            {{$mensagemSucesso}}
+        </div>
+    @endisset
+
     @php($count = 1)
     <div class="accordion" id="accordionExample">
         @foreach ($series as $serie)
@@ -19,10 +25,20 @@
             </h2>
             <div id="collapse{{$count}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body d-flex justify-content-end">
-                    <div class="d-flex justify-content-between col-3">
-                        <a href="{{url('series/visualisar/' . $serie->id)}}" class="btn btn-primary mb-2">Visualizar</a>
-                        <a href="{{url('series/editar/' . $serie->id)}}" class="btn btn-warning mb-2">Editar</a>
-                        <a href="{{url('series/deletar/' . $serie->id)}}" class="btn btn-danger mb-2">Deletar</a>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <form action="{{route('series.show', $serie->id)}}" method="get">
+                            @csrf
+                            <button class="btn btn-primary btn-sm">Visualizar</button>
+                        </form>
+                        <form action="{{route('series.edit', $serie->id)}}" method="get">
+                            @csrf
+                            <button class="btn btn-warning btn-sm">Editar</button>
+                        </form>
+                        <form action="{{route('series.destroy', $serie->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm">Deletar</button>
+                        </form>
                     </div>
                 </div>
             </div>

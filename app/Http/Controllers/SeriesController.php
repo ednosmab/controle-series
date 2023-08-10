@@ -4,21 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Serie;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class SeriesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $series = Serie::query()->orderBy('nome')->get();
-        return view('series.index', compact('series'));
+        $mensagemSucesso = $request->session()->get('mensagem.sucesso');
+
+        return view('series.index', compact('series', 'mensagemSucesso'));
     }
 
-    public function view(Request $request)
+    public function show(Serie $series)
     {
-        $idSerie = $request->id;
-        $serieAll = Serie::find($idSerie);
-        return view('series.view', compact('serieAll'));
+        return view('series.show', ['serieAll' => $series]);
     }
 
     public function create()
@@ -28,41 +27,25 @@ class SeriesController extends Controller
 
     public function store(Request $request)
     {
-        Serie::create($request->all());
-        
-        return to_route('series.index');
+        $serie = Serie::create($request->all());
+        return to_route('series.index')->with('mensagem.sucesso', "Série '{$serie->nome}' adicionada com sucesso");
     }
 
-    public function edit(Request $request)
+    public function edit(Serie $series)
     {
-        $idSerie = $request->id;
-        $serieAll = Serie::select('nome')->where('id', '=', $idSerie)->get();
-        foreach ($serieAll as $serie) {
-            $nomeSerie = $serie->nome;
-        }
-        return view('series.edit', compact('nomeSerie', 'idSerie'));
+        return view('series.edit', ['nomeSerie' => $series->nome, 'idSerie' => $series->id]);
     }
 
-    public function update(Request $request)
+    public function update(Serie $series, Request $request)
     {
-        $idSerie = $request->id;
-        $alterNameSerie = $request->input('nome');
-
-        $success = Serie::where('id', '=', $idSerie)->update(['nome' => $alterNameSerie]);
-
-        if(!$success){
-            return redirect('/series')->with('error', [
-                'msg' => "Nome da série ".$alterNameSerie." não foi alterado com sucesso",
-            ]);
-        }
-
-        return redirect('/series');
+        $series->where('id', '=', $series->id)->update(['nome' => $request->nome]);
+        return to_route('series.index')
+            ->with('mensagem.sucesso', "Série '{$series->nome}' alterado para '{$request->nome}' com sucesso");
     }
 
-    public function delete(Request $request)
+    public function destroy(Serie $series)
     {
-        $idSerie = $request->id;
-        Serie::where('id', '=', $idSerie)->delete();
-        return redirect('/series');
+        $series->delete();
+        return to_route('series.index')->with('mensagem.sucesso', "Série '{$series->nome}' removida com sucesso");
     }
 }
