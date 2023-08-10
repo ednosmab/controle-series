@@ -17,7 +17,7 @@ class SeriesController extends Controller
 
     public function show(Serie $series)
     {
-        return view('series.show', ['serieAll' => $series]);
+        return view('series.show')->with('series', $series);
     }
 
     public function create()
@@ -33,7 +33,7 @@ class SeriesController extends Controller
 
     public function edit(Serie $series)
     {
-        return view('series.edit', ['nomeSerie' => $series->nome, 'idSerie' => $series->id]);
+        return view('series.edit')->with('series', $series);
     }
 
     public function update(Serie $series, Request $request)
