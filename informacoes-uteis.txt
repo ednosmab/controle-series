@@ -23,3 +23,11 @@ Instalar o Framework Bootstrap
 1 - https://cursos.alura.com.br/forum/topico-ao-executar-o-npm-install-bootstrap-a-aplicacao-nao-funcionou-mais-271952
 
 2 - https://cursos.alura.com.br/forum/topico-duvida-vite-config-257454
+
+
+Para o usuário externo ter permissão de escrita em arquivos criados dentro do container pelo root
+é necessário trocar o proprietário do arquivo, ou nesse caso, de diretório:
+1 - Dentro do container executar o comando do Chown - Changer Owner (Mudar de Proprietário)
+    chown -R 1000 *
+O * indica todos os arquivos dentro do diretório local
+O 1000 é o ID do usuário local do sistema operacional
