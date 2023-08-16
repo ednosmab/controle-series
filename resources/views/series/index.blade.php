@@ -26,7 +26,7 @@
                 <div id="collapse{{$count}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body d-flex justify-content-end md-2">
                         <div class="d-flex justify-content-between col-3">
-                            <a href="{{route('seasons.index', $serie->id)}}" class="btn btn-primary btn-sm">Visualizar</a>
+                            <a href="{{route('series.show', $serie->id)}}" class="btn btn-primary btn-sm">Visualizar Serie</a>
                             <a href="{{route('series.edit', $serie->id)}}" class="btn btn-warning btn-sm">Editar</a>
                             <form action="{{route('series.destroy', $serie->id)}}" method="post">
                                 @csrf

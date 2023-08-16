@@ -11,10 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Schema::create('episodes', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedTinyInteger('number');
+        //     $table->foreignId('season_id')->constrained()->onDelete('cascade');
+        // });
+
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
             $table->unsignedTinyInteger('number');
             $table->foreignId('season_id')->constrained()->onDelete('cascade');
+            $table->foreignId('series_id')->constrained()->onDelete('cascade');
         });
     }
 

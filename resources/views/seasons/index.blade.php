@@ -10,4 +10,5 @@
             </li>
         @endforeach
     </ul>
+    <a  href="{{ url()->previous() }}" class="btn btn-sm btn-primary mt-3">Voltar</a>
 </x-layout>

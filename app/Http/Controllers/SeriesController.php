@@ -18,9 +18,12 @@ class SeriesController extends Controller
         return view('series.index', compact('series', 'mensagemSucesso'));
     }
 
-    public function show(Series $series, Episode $episode, Season $season)
+    public function show(Series $series)
     {
-        return view('series.show')->with('series', $series);
+        return view('series.show')
+            ->with('series', $series)
+            ->with('qtySeasons', $series->seasons()->count())
+            ->with('qtyEpisodeos', $series->episodes()->count());
     }
 
     public function create()
@@ -47,6 +50,7 @@ class SeriesController extends Controller
             for ($j = 1; $j <= $request->episodesPerSeason; $j++) { 
                 $episodes[] = [
                     "season_id" => $season->id,
+                    "series_id" => $serie->id,
                     "number" => $i
                 ];
             }
