@@ -1,11 +1,25 @@
-Para startar o laravel
-
+Para startar o laravel e desligar o laravel
+    Start
 ./vendor/bin/sail up
+ou com a flag -d para liberar o terminal 
+./vendor/bin/sail up -d 
+ou 
+sail up
+ou com a flag -d para liberar o terminal 
+sail up -d
+    Close
+se para subir foi utilizado ./vendor/bin/sail up, para fechar ctrl + c
+se para subir foi utilizado ./vendor/bin/sail up -d, para fechar ./vendor/bin/sail down
+se para subir foi utilizado sail up, para fechar ctrl + c
+se para subir foi utilizado sail up -d, para fechar sail down
 
 
 Para subir o projeto:
  - Sobe o design
  - Acessar o containeir do laravel controle-series-app-controle_series-1
+npm run dev
+
+ou fora do container e dentro do diretório do projeto
 npm run dev
 
 Se for necessário!
@@ -31,3 +45,6 @@ Para o usuário externo ter permissão de escrita em arquivos criados dentro do 
     chown -R 1000 *
 O * indica todos os arquivos dentro do diretório local
 O 1000 é o ID do usuário local do sistema operacional
+
+
+Para configurar a porta de acesso ao projeto, verificar o arquivo .env que está na raiz do diretório
